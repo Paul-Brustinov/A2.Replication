@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/A2.Replication.Data" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/A2.Replication.Data" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:49254/Replication.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+  <xs:import schemaLocation="http://localhost:49254/Replication.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="PackageData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="HasContent" type="xs:boolean" />
+      <xs:element minOccurs="0" name="HasMoreData" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ItemId" type="xs:long" />
+      <xs:element minOccurs="0" name="ItemName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NextPackageId" type="xs:long" />
+      <xs:element minOccurs="0" name="Tables" nillable="true" type="tns:ArrayOfDataTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PackageData" nillable="true" type="tns:PackageData" />
+  <xs:complexType name="ArrayOfDataTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DataTable" nillable="true" type="tns:DataTable" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDataTable" nillable="true" type="tns:ArrayOfDataTable" />
+  <xs:complexType name="DataTable">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Columns" nillable="true" type="tns:ArrayOfDataColumn" />
+      <xs:element minOccurs="0" name="Rows" nillable="true" type="tns:ArrayOfDataRow" />
+      <xs:element minOccurs="0" name="TableName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DataTable" nillable="true" type="tns:DataTable" />
+  <xs:complexType name="ArrayOfDataColumn">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DataColumn" nillable="true" type="tns:DataColumn" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDataColumn" nillable="true" type="tns:ArrayOfDataColumn" />
+  <xs:complexType name="DataColumn">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data" minOccurs="0" name="DataType" type="q1:SqlDbType" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DataColumn" nillable="true" type="tns:DataColumn" />
+  <xs:complexType name="ArrayOfDataRow">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DataRow" nillable="true" type="tns:DataRow" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDataRow" nillable="true" type="tns:ArrayOfDataRow" />
+  <xs:complexType name="DataRow">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Gen" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Values" nillable="true" type="q2:ArrayOfstring" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DataRow" nillable="true" type="tns:DataRow" />
+  <xs:complexType name="DataForGet">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="TableName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DataForGet" nillable="true" type="tns:DataForGet" />
+</xs:schema>
